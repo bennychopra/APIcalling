@@ -75,4 +75,17 @@ struct ContentView: View {
                 return
             }
 
-           
+            // Try to decode the JSON data into our struct
+            do {
+                let decodedResponse = try JSONDecoder().decode(BreedsResponse.self, from: data)
+                
+                // Extract the breed names (keys) and sort them alphabetically
+                let allBreeds = decodedResponse.message.keys.sorted()
+                
+                // Update the UI on the main thread
+                DispatchQueue.main.async {
+                    self.breeds = allBreeds
+                }
+            } catch {
+                
+
