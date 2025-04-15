@@ -66,4 +66,13 @@ struct ContentView: View {
                 return
             }
 
-            
+            // Handle missing data
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "No data received."
+                    self.showAlert = true
+                }
+                return
+            }
+
+           
