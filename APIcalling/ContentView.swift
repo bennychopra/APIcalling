@@ -119,4 +119,49 @@ struct BreedDetailView: View {
                     ProgressView()
                 }
             } else {
-               
+                // Fallback if image URL is not valid
+                Text("Image not available.")
+            }
+
+            Spacer()
+        }
+        .padding()
+        .navigationTitle(breed.capitalized) // Title of the detail view
+        .onAppear(perform: loadImage) // Load the image when view appears
+        .alert(isPresented: $showAlert) {
+            // Show alert if something goes wrong
+            Alert(title: Text("Error"), message: Text("Failed to load image."), dismissButton: .default(Text("OK")))
+        }
+    }
+
+    // This function fetches a random image URL for the selected breed
+    func loadImage() {
+        // Create the API URL with the selected breed
+        guard let url = URL(string: "https://dog.ceo/api/breed/\(breed)/images/random") else {
+            self.showAlert = true
+            return
+        }
+
+        // Make the network request
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            // Handle errors or decode the image URL
+            guard let data = data,
+                  let decoded = try? JSONDecoder().decode(ImageResponse.self, from: data) else {
+                DispatchQueue.main.async {
+                    self.showAlert = true
+                }
+                return
+            }
+
+            // Update the UI with the image URL
+            DispatchQueue.main.async {
+                self.imageURL = decoded.message
+            }
+        }.resume()
+    }
+}
+
+
+#Preview {
+    ContentView()
+}
