@@ -7,18 +7,15 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
+// MARK: - Data Models
+
+// This struct matches the JSON format from the "list all breeds" endpoint
+struct BreedsResponse: Decodable {
+    let message: [String: [String]] // Key: breed name, Value: sub-breeds (not used here)
 }
 
-#Preview {
-    ContentView()
+// This struct matches the JSON format from the "random image" endpoint
+struct ImageResponse: Decodable {
+    let message: String // URL string of the image
 }
+
