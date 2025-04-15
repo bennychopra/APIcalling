@@ -37,4 +37,13 @@ struct ContentView: View {
                     Text(breed.capitalized) // Capitalize for better appearance
                 }
             }
-            
+            .navigationTitle("Dog Breeds") // Title for the navigation bar
+        }
+        .onAppear(perform: loadBreeds) // Call API when view appears
+        .alert(isPresented: $showAlert) {
+            // Show an alert if there's an error
+            Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+        }
+    }
+
+   
