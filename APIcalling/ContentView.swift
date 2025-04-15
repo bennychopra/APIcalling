@@ -46,4 +46,14 @@ struct ContentView: View {
         }
     }
 
-   
+    // This function fetches the list of breeds from the Dog API
+    func loadBreeds() {
+        // Create the URL from the API string
+        guard let url = URL(string: "https://dog.ceo/api/breeds/list/all") else {
+            self.errorMessage = "Invalid URL."
+            self.showAlert = true
+            return
+        }
+
+        
+
