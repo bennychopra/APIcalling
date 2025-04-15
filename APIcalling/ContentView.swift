@@ -19,3 +19,14 @@ struct ImageResponse: Decodable {
     let message: String // URL string of the image
 }
 
+// MARK: - Main View (List of Dog Breeds)
+
+struct ContentView: View {
+    // This state variable will hold the list of dog breeds
+    @State private var breeds: [String] = []
+    
+    // These handle error messages and alert visibility
+    @State private var showAlert = false
+    @State private var errorMessage = ""
+
+    
