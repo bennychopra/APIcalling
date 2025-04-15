@@ -55,5 +55,15 @@ struct ContentView: View {
             return
         }
 
-        
+        // Make the API request
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            // Handle network error
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.errorMessage = error.localizedDescription
+                    self.showAlert = true
+                }
+                return
+            }
 
+            
