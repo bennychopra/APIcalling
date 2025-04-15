@@ -106,3 +106,17 @@ struct BreedDetailView: View {
 
     var body: some View {
         VStack {
+            // If a valid image URL is available, show it
+            if let url = URL(string: imageURL) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: 300)
+                        .cornerRadius(20)
+                } placeholder: {
+                    // Show a spinner while the image loads
+                    ProgressView()
+                }
+            } else {
+               
