@@ -97,4 +97,12 @@ struct ContentView: View {
     }
 }
 
+// MARK: - Detail View (Shows Image for Selected Breed)
 
+struct BreedDetailView: View {
+    var breed: String // Passed in from ContentView
+    @State private var imageURL: String = "" // Will hold the image URL
+    @State private var showAlert = false // For handling errors
+
+    var body: some View {
+        VStack {
