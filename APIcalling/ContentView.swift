@@ -29,4 +29,12 @@ struct ContentView: View {
     @State private var showAlert = false
     @State private var errorMessage = ""
 
-    
+    var body: some View {
+        NavigationView {
+            List(breeds, id: \.self) { breed in
+                // Each list item links to a detail view for that breed
+                NavigationLink(destination: BreedDetailView(breed: breed)) {
+                    Text(breed.capitalized) // Capitalize for better appearance
+                }
+            }
+            
