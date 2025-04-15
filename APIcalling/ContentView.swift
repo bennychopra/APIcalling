@@ -87,5 +87,14 @@ struct ContentView: View {
                     self.breeds = allBreeds
                 }
             } catch {
-                
+                // Handle JSON decoding errors
+                DispatchQueue.main.async {
+                    self.errorMessage = "Failed to decode JSON."
+                    self.showAlert = true
+                }
+            }
+        }.resume() // Start the network request
+    }
+}
+
 
