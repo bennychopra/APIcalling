@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Data Models
+
 
 // This struct matches the JSON format from the "list all breeds" endpoint
 struct BreedsResponse: Decodable {
@@ -19,7 +19,7 @@ struct ImageResponse: Decodable {
     let message: String // URL string of the image
 }
 
-// MARK: - Main View (List of Dog Breeds)
+
 
 struct dogs: View {
     // This state variable will hold the list of dog breeds
@@ -97,7 +97,7 @@ struct dogs: View {
     }
 }
 
-// MARK: - Detail View (Shows Image for Selected Breed)
+
 
 struct BreedDetailView: View {
     var breed: String // Passed in from ContentView
